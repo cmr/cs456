@@ -1,0 +1,19 @@
+if you are reading this in english then you are reading the plaintext of the
+first assignment in our cryptography course. this assignment was supposedly
+posted two days before the end of the eighth month in the year of twenty
+fourteen. as you have discovered by cracking this assignment, it was
+encrypted using a simple monoalphabetic substitution cipher. for this
+assignment submit the following items by email at least before the third
+week of the following month:
+
+- first, provide the substitution table used for the letters present in the plaintext
+- second, describe how you broke this cipher
+- third, describe and implement your own cipher system for encrypting and
+  decrypting text files. you may use any programming language of your choice
+  as part of the submission.
+
+for the third part provide a live demonstration of your system.
+
+- fourth, write a short report on the statistical letter frequencies of
+  english in comparison with other languages. determine if english is
+  considered the least random of most natural languages
