@@ -1,0 +1,15 @@
+[package]
+
+name = "de-rsa"
+version = "0.0.1"
+authors = ["Corey Richardson <corey@octayn.net>"]
+
+[dependencies.rust-gmp]
+git = "https://github.com/cmr/rust-gmp"
+branch = "crypto"
+
+[dependencies.docopt]
+git = "https://github.com/docopt/docopt.rs"
+
+[dependencies.docopt_macros]
+git = "git://github.com/docopt/docopt.rs"

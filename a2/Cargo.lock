@@ -1,0 +1,27 @@
+[root]
+name = "de-rsa"
+version = "0.0.1"
+dependencies = [
+ "docopt 0.6.5 (git+git://github.com/docopt/docopt.rs#1c9a63e0362848570f7c503f8891770ebf2d1eab)",
+ "docopt_macros 0.6.5 (git+git://github.com/docopt/docopt.rs#1c9a63e0362848570f7c503f8891770ebf2d1eab)",
+ "rust-gmp 0.2.0 (git+https://github.com/cmr/rust-gmp?ref=crypto#759525e7665dffaf28799de9177422da36e91f3c)",
+]
+
+[[package]]
+name = "docopt"
+version = "0.6.5"
+source = "git+git://github.com/docopt/docopt.rs#1c9a63e0362848570f7c503f8891770ebf2d1eab"
+
+[[package]]
+name = "docopt_macros"
+version = "0.6.5"
+source = "git+git://github.com/docopt/docopt.rs#1c9a63e0362848570f7c503f8891770ebf2d1eab"
+dependencies = [
+ "docopt 0.6.5 (git+git://github.com/docopt/docopt.rs#1c9a63e0362848570f7c503f8891770ebf2d1eab)",
+]
+
+[[package]]
+name = "rust-gmp"
+version = "0.2.0"
+source = "git+https://github.com/cmr/rust-gmp?ref=crypto#759525e7665dffaf28799de9177422da36e91f3c"
+
