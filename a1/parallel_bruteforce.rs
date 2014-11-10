@@ -45,9 +45,9 @@ fn do_perm(letters: Vec<char>) {
     let mut s = String::with_capacity(CIPHER.len());
     for &c in CIPHER.as_bytes().iter() {
             if c.to_ascii().is_alphabetic() {
-                s.push_char(letters[(c - 'A' as u8) as uint]);
+                s.push(letters[(c - 'A' as u8) as uint]);
             } else {
-                s.push_char(std::char::from_u32(c as u32).unwrap());
+                s.push(std::char::from_u32(c as u32).unwrap());
             }
     }
 
