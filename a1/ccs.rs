@@ -47,7 +47,7 @@ pub fn crypt(key: u64, mut text: Vec<u8>) -> Vec<u8> {
 }
 
 fn main() {
-    let key = std::io::MemReader::new(std::os::args().move_iter().nth(1).unwrap().into_bytes()).read_le_u64().unwrap();
+    let key = std::io::MemReader::new(std::os::args().into_iter().nth(1).unwrap().into_bytes()).read_le_u64().unwrap();
     let input = std::io::stdin().read_to_end().unwrap();
     std::io::stdout().write(crypt(key, input).as_slice());
 }
