@@ -1,6 +1,6 @@
 [package]
 
-name = "de-eg"
+name = "crap_elgamal"
 version = "0.0.1"
 authors = ["Corey Richardson <corey@octayn.net>"]
 
@@ -10,3 +10,7 @@ branch = "crypto"
 
 [dependencies]
 docopt = "*"
+
+[[bin]]
+name = "de-eg"
+path = "src/de-eg.rs"

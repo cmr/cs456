@@ -1,10 +1,10 @@
-#![allow(dead_code, non_snake_case)]
-
+extern crate crap_elgamal;
 extern crate gmp;
 extern crate docopt;
 extern crate serialize;
 
 use gmp::Mpz;
+use crap_elgamal::{Privkey, Pubkey, decrypt};
 
 #[deriving(Decodable, Show)]
 struct Args {
@@ -16,29 +16,6 @@ struct Args {
 }
 
 const USAGE: &'static str = "Usage: de-eg <p> <q> <g> <a> <b>";
-
-struct Pubkey {
-    p: Mpz,
-    g: Mpz,
-    b: Mpz,
-}
-
-struct Privkey {
-    a: Mpz,
-}
-
-fn encrypt(key: &Pubkey, message: Mpz) -> (Mpz, Mpz) {
-    let k = gmp::RandState::new().urandom(&key.p);
-    let half = key.g.powm(&k, &key.p);
-    let full = key.b.powm(&k, &key.p);
-    let cipher = (message * full).modulus(&key.p);
-    (half, cipher)
-}
-
-fn decrypt(key: &Pubkey, privkey: &Privkey, (half, cipher): (Mpz, Mpz)) -> Mpz {
-    let full = half.powm(&privkey.a, &key.p);
-    (cipher * full.invert(&key.p).unwrap()).modulus(&key.p)
-}
 
 fn fs<S: std::str::Str>(s: S, m: &str) -> Mpz {
     from_str(s.as_slice().trim()).expect(m)
