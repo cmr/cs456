@@ -10,3 +10,4 @@ branch = "crypto"
 
 [dependencies]
 docopt = "*"
+rustc-serialize = "*"

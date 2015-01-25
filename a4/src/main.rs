@@ -2,12 +2,13 @@
 
 extern crate gmp;
 extern crate docopt;
-extern crate serialize;
+extern crate "rustc-serialize" as rustc_serialize;
 
 use gmp::Mpz;
 use self::Point::{Infinity, Real};
+use std::num::{FromPrimitive, ToPrimitive};
 
-#[deriving(Decodable, Show)]
+#[derive(RustcDecodable, Show)]
 struct Args {
     arg_p: String,
     arg_A: String,
@@ -21,13 +22,13 @@ struct Args {
 
 const USAGE: &'static str = "Usage: de-eceg <p> <A> <B> <G1> <G2> <P1> <P2> <N>";
 
-#[deriving(Show, Eq, PartialEq, Clone)]
+#[derive(Show, Eq, PartialEq, Clone)]
 struct RealPoint {
     x: Mpz,
     y: Mpz
 }
 
-#[deriving(Show, Eq, PartialEq, Clone)]
+#[derive(Show, Eq, PartialEq, Clone)]
 enum Point {
     Infinity,
     Real(RealPoint),
@@ -43,7 +44,7 @@ impl Point {
 }
 
 // y^2 = x^3 + ax + b (mod q)
-#[deriving(Show)]
+#[derive(Show)]
 struct EC {
     a: Mpz,
     b: Mpz,
@@ -78,17 +79,17 @@ impl EC {
             (p, Infinity) => p,
             (Real(RealPoint { x: x1, y: y1 }), Real(RealPoint { x: x2, y: y2 })) => {
                 let res = if x1 != x2 {
-                    let m = ((y2 - y1) * (x2 - x1).invert(&self.q).unwrap());
-                    let x3 = (powm(&m, 2, &self.q) - x1 - x2);
-                    let y3 = m * (x1 - x3) - y1;
+                    let m = ((&y2 - &y1) * (&x2 - &x1).invert(&self.q).unwrap());
+                    let x3 = (powm(&m, 2, &self.q) - &x1 - &x2);
+                    let y3 = &m * (&x1 - &x3) - &y1;
                     self.wrap(Real(RealPoint { x: x3, y: y3 }))
                 } else if y1 == (-y2).modulus(&self.q) {
                     Infinity
                 } else {
                     // point doubling
-                    let m = (mpz(3) * x1 * x1 + self.a) * (mpz(2) * y1).invert(&self.q).unwrap();
-                    let x3 = (m * m) - (mpz(2) * x1);
-                    let y3 = (m * (x1 - x3)) - y1;
+                    let m = (mpz(3) * &x1 * &x1 + &self.a) * (mpz(2) * &y1).invert(&self.q).unwrap();
+                    let x3 = (&m * &m) - (mpz(2) * &x1);
+                    let y3 = (&m * (&x1 - &x3)) - &y1;
                     self.wrap(Real(RealPoint { x: x3, y: y3 }))
                 };
                 res
@@ -112,7 +113,7 @@ impl EC {
     fn neg(&self, p: Point) -> Point {
         match p {
             Infinity => Infinity,
-            Real(RealPoint { x, y }) => Real(RealPoint { x: x, y: self.q - y })
+            Real(RealPoint { x, y }) => Real(RealPoint { x: x, y: &self.q - y })
         }
     }
 
@@ -144,7 +145,8 @@ fn decrypt(privkey: &Seckey, (y, alpha): (Point, Point)) -> Point {
 }
 
 fn fs<S: std::str::Str>(s: S, m: &str) -> Mpz {
-    from_str(s.as_slice()).expect(m)
+    use std::str::FromStr;
+    FromStr::from_str(s.as_slice()).expect(m)
 }
 
 fn main() {
