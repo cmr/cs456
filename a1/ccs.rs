@@ -33,17 +33,17 @@ pub fn crypt(key: u64, mut text: Vec<u8>) -> Vec<u8> {
         text.push(0);
     }
 
-    let mut output = std::io::MemWriter::with_capacity(text.len());
+    let mut output = Vec::with_capacity(text.len());
 
     assert!(text.len() % 8 == 0);
 
     for chunk in text.as_slice().chunks(8) {
         let mut rd = std::io::BufReader::new(chunk);
-        let val = rd.read_le_u64().unwrap();
+        let val = rd.read_le_u64().ok().unwrap();
         output.write_le_u64(rng.next_u64() ^ val);
     }
 
-    output.unwrap()
+    output
 }
 
 fn main() {
