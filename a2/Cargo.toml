@@ -8,8 +8,7 @@ authors = ["Corey Richardson <corey@octayn.net>"]
 git = "https://github.com/cmr/rust-gmp"
 branch = "crypto"
 
-[dependencies.docopt]
-git = "https://github.com/docopt/docopt.rs"
-
-[dependencies.docopt_macros]
-git = "git://github.com/docopt/docopt.rs"
+[dependencies]
+docopt = "*"
+docopt_macros = "*"
+rustc-serialize = "*"

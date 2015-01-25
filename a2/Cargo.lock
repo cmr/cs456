@@ -2,26 +2,41 @@
 name = "de-rsa"
 version = "0.0.1"
 dependencies = [
- "docopt 0.6.5 (git+git://github.com/docopt/docopt.rs#1c9a63e0362848570f7c503f8891770ebf2d1eab)",
- "docopt_macros 0.6.5 (git+git://github.com/docopt/docopt.rs#1c9a63e0362848570f7c503f8891770ebf2d1eab)",
- "rust-gmp 0.2.0 (git+https://github.com/cmr/rust-gmp?ref=crypto#759525e7665dffaf28799de9177422da36e91f3c)",
+ "docopt 0.6.31 (registry+https://github.com/rust-lang/crates.io-index)",
+ "docopt_macros 0.6.31 (registry+https://github.com/rust-lang/crates.io-index)",
+ "rust-gmp 0.2.0 (git+https://github.com/cmr/rust-gmp?branch=crypto)",
+ "rustc-serialize 0.2.9 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
 name = "docopt"
-version = "0.6.5"
-source = "git+git://github.com/docopt/docopt.rs#1c9a63e0362848570f7c503f8891770ebf2d1eab"
+version = "0.6.31"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+dependencies = [
+ "regex 0.1.10 (registry+https://github.com/rust-lang/crates.io-index)",
+ "rustc-serialize 0.2.9 (registry+https://github.com/rust-lang/crates.io-index)",
+]
 
 [[package]]
 name = "docopt_macros"
-version = "0.6.5"
-source = "git+git://github.com/docopt/docopt.rs#1c9a63e0362848570f7c503f8891770ebf2d1eab"
+version = "0.6.31"
+source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
- "docopt 0.6.5 (git+git://github.com/docopt/docopt.rs#1c9a63e0362848570f7c503f8891770ebf2d1eab)",
+ "docopt 0.6.31 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
+
+[[package]]
+name = "regex"
+version = "0.1.10"
+source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
 name = "rust-gmp"
 version = "0.2.0"
-source = "git+https://github.com/cmr/rust-gmp?ref=crypto#759525e7665dffaf28799de9177422da36e91f3c"
+source = "git+https://github.com/cmr/rust-gmp?branch=crypto#b267788deaa9e8c30468965db95e66ee179668be"
+
+[[package]]
+name = "rustc-serialize"
+version = "0.2.9"
+source = "registry+https://github.com/rust-lang/crates.io-index"
 
