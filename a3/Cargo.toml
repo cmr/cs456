@@ -10,6 +10,7 @@ branch = "crypto"
 
 [dependencies]
 docopt = "*"
+rustc-serialize = "*"
 
 [[bin]]
 name = "de-eg"

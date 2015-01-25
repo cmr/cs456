@@ -2,11 +2,13 @@ extern crate crap_elgamal;
 extern crate gmp;
 extern crate docopt;
 extern crate serialize;
+extern crate "rustc-serialize" as rustc_serialize;
 
 use gmp::Mpz;
 use crap_elgamal::{Privkey, Pubkey, decrypt};
+use std::num::ToPrimitive;
 
-#[deriving(Decodable, Show)]
+#[derive(RustcDecodable, Show)]
 struct Args {
     arg_p: String,
     arg_q: String,
@@ -18,7 +20,8 @@ struct Args {
 const USAGE: &'static str = "Usage: de-eg <p> <q> <g> <a> <b>";
 
 fn fs<S: std::str::Str>(s: S, m: &str) -> Mpz {
-    from_str(s.as_slice().trim()).expect(m)
+    use std::str::FromStr;
+    FromStr::from_str(s.as_slice().trim()).expect(m)
 }
 
 fn main() {
